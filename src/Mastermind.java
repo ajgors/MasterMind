@@ -76,8 +76,8 @@ public class Mastermind {
         System.out.println("Podaj kod");
         System.out.println("Masz 10 szans na odgadnięcie liczby");
         System.out.println("Napisz help aby wyświetlić instrukcje gry");
-//        int computerNumber = computerRandomNumber();
-        int computerNumber = 4511;
+        int computerNumber = computerRandomNumber();
+//        int computerNumber = 4511;
         Scanner scanner = new Scanner(System.in);
 
         int counter = 1;

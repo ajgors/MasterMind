@@ -1,20 +1,7 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Mastermind {
-
-
-    public static int[] removeFromArray(int[] array, int index) {
-        int[] arrayCopy = new int[array.length - 1];
-        for (int i = 0, k = 0; i < array.length; i++) {
-            if (i != index) {
-                arrayCopy[k++] = array[i];
-            }
-        }
-        return arrayCopy;
-    }
 
     public static String instructions() {
         return  "\nInstrukcja gry MasterMind\n" +
@@ -50,7 +37,7 @@ public class Mastermind {
         return numbers;
     }
 
-    public static String score(int userNumber, int computerNumber) {
+    public static StringBuilder score(int userNumber, int computerNumber) {
 
         StringBuilder score = new StringBuilder();
         int[] userNumbers = numberToArrayOfDigits(userNumber);
@@ -58,34 +45,32 @@ public class Mastermind {
 
         for (int i = 0; i < userNumbers.length; i++) {
             if (userNumbers[i] == computerNumbers[i]) {
-                userNumbers = removeFromArray(userNumbers, i);
-                computerNumbers = removeFromArray(computerNumbers, i);
+                userNumbers[i]  = 0;
+                computerNumbers[i] = -1;
                 score.append(1);
-                i--;
             }
         }
 
         for (int j = 0; j < userNumbers.length; j++) {
             for (int k = 0; k < userNumbers.length; k++) {
                 if (userNumbers[j] == computerNumbers[k]) {
-                    userNumbers = removeFromArray(userNumbers, j);
-                    computerNumbers = removeFromArray(computerNumbers, k);
+                    userNumbers[j] = -2;
+                    computerNumbers[k] =-3;
                     score.append(0);
-                    j--;
                     break;
                 }
             }
         }
-        return score.toString();
+        return score;
     }
 
     public static void main(String[] args) {
         System.out.println("Podaj kod");
         System.out.println("Masz 10 szans na odgadnięcie liczby");
         System.out.println("Napisz help aby wyświetlić instrukcje gry");
-        int computerNumber = computerRandomNumber();
+//        int computerNumber = computerRandomNumber();
 //        int computerNumber = 1111;
-//        int computerNumber = 4511;
+        int computerNumber = 4511;
         Scanner scanner = new Scanner(System.in);
 
         int counter = 1;

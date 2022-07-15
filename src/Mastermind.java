@@ -41,7 +41,7 @@ public class Mastermind {
         return Integer.parseInt(result.toString());
     }
 
-    public static int[] numberToArrayOfInts(int number) {
+    public static int[] numberToArrayOfDigits(int number) {
         String tmp = Integer.toString(number);
         int[] numbers = new int[tmp.length()];
         for (int i = 0; i < tmp.length(); i++) {
@@ -53,8 +53,8 @@ public class Mastermind {
     public static String score(int userNumber, int computerNumber) {
 
         StringBuilder score = new StringBuilder();
-        int[] userNumbers = numberToArrayOfInts(userNumber);
-        int[] computerNumbers = numberToArrayOfInts(computerNumber);
+        int[] userNumbers = numberToArrayOfDigits(userNumber);
+        int[] computerNumbers = numberToArrayOfDigits(computerNumber);
 
         for (int i = 0; i < userNumbers.length; i++) {
             if (userNumbers[i] == computerNumbers[i]) {

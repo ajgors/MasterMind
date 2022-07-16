@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -32,7 +33,7 @@ public class Mastermind {
         String tmp = Integer.toString(number);
         int[] numbers = new int[tmp.length()];
         for (int i = 0; i < tmp.length(); i++) {
-            numbers[i] = tmp.charAt(i);
+            numbers[i] = Integer.parseInt(String.valueOf(tmp.charAt(i)));
         }
         return numbers;
     }
@@ -40,22 +41,22 @@ public class Mastermind {
     public static StringBuilder score(int userNumber, int computerNumber) {
 
         StringBuilder score = new StringBuilder();
-        int[] userNumbers = numberToArrayOfDigits(userNumber);
-        int[] computerNumbers = numberToArrayOfDigits(computerNumber);
+        int[] userDigits = numberToArrayOfDigits(userNumber);
+        int[] computerDigits = numberToArrayOfDigits(computerNumber);
 
-        for (int i = 0; i < userNumbers.length; i++) {
-            if (userNumbers[i] == computerNumbers[i]) {
-                userNumbers[i]  = 0;
-                computerNumbers[i] = -1;
+        for (int i = 0; i < userDigits.length; i++) {
+            if (userDigits[i] == computerDigits[i]) {
+                userDigits[i]  = 0;
+                computerDigits[i] = -1;
                 score.append(1);
             }
         }
-
-        for (int j = 0; j < userNumbers.length; j++) {
-            for (int k = 0; k < userNumbers.length; k++) {
-                if (userNumbers[j] == computerNumbers[k]) {
-                    userNumbers[j] = -2;
-                    computerNumbers[k] =-3;
+        System.out.println(Arrays.toString(userDigits));
+        for (int j = 0; j < userDigits.length; j++) {
+            for (int k = 0; k < userDigits.length; k++) {
+                if (userDigits[j] == computerDigits[k]) {
+                    userDigits[j] = -2;
+                    computerDigits[k] =-3;
                     score.append(0);
                     break;
                 }

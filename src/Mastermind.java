@@ -44,15 +44,15 @@ public class Mastermind {
         int[] userDigits = numberToArrayOfDigits(userNumber);
         int[] computerDigits = numberToArrayOfDigits(computerNumber);
 
-        for (int i = 0; i < userDigits.length; i++) {
+        for (int i = 0; i < 4; i++) {
             if (userDigits[i] == computerDigits[i]) {
                 userDigits[i] = 0;
                 computerDigits[i] = -1;
                 score.append(1);
             }
         }
-        for (int j = 0; j < userDigits.length; j++) {
-            for (int k = 0; k < userDigits.length; k++) {
+        for (int j = 0; j < 4; j++) {
+            for (int k = 0; k < 4; k++) {
                 if (userDigits[j] == computerDigits[k]) {
                     userDigits[j] = -2;
                     computerDigits[k] = -3;

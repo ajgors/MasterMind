@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Mastermind {
 
     public static String instructions() {
-        return  "\nInstrukcja gry MasterMind\n" +
+        return "\nInstrukcja gry MasterMind\n" +
                 "komputer losuje kod, który gracz ma odgadnąć\n" +
                 "kod składa się z 4 losowych cyfr od 1 do 6 (cyfry mogą się powtarzać)\n" +
                 "np. 1234\n" + "1122\n" + "1111\n" +
@@ -31,11 +31,11 @@ public class Mastermind {
 
     public static int[] numberToArrayOfDigits(int number) {
         String tmp = Integer.toString(number);
-        int[] numbers = new int[tmp.length()];
+        int[] result = new int[tmp.length()];
         for (int i = 0; i < tmp.length(); i++) {
-            numbers[i] = Integer.parseInt(String.valueOf(tmp.charAt(i)));
+            result[i] = Integer.parseInt(String.valueOf(tmp.charAt(i)));
         }
-        return numbers;
+        return result;
     }
 
     public static StringBuilder score(int userNumber, int computerNumber) {
@@ -46,17 +46,16 @@ public class Mastermind {
 
         for (int i = 0; i < userDigits.length; i++) {
             if (userDigits[i] == computerDigits[i]) {
-                userDigits[i]  = 0;
+                userDigits[i] = 0;
                 computerDigits[i] = -1;
                 score.append(1);
             }
         }
-        System.out.println(Arrays.toString(userDigits));
         for (int j = 0; j < userDigits.length; j++) {
             for (int k = 0; k < userDigits.length; k++) {
                 if (userDigits[j] == computerDigits[k]) {
                     userDigits[j] = -2;
-                    computerDigits[k] =-3;
+                    computerDigits[k] = -3;
                     score.append(0);
                     break;
                 }
@@ -65,20 +64,26 @@ public class Mastermind {
         return score;
     }
 
-    public static void main(String[] args) {
+    public static void masterMind() {
         System.out.println("Podaj kod");
         System.out.println("Masz 10 szans na odgadnięcie liczby");
         System.out.println("Napisz help aby wyświetlić instrukcje gry");
-//        int computerNumber = computerRandomNumber();
+        int computerNumber = computerRandomNumber();
 //        int computerNumber = 1111;
-        int computerNumber = 4511;
+//        int computerNumber = 4511;
         Scanner scanner = new Scanner(System.in);
 
         int counter = 1;
         while (true) {
             if (scanner.hasNextInt()) {
                 int userNumber = scanner.nextInt();
-                if (userNumber > 6666 || userNumber < 999 || Integer.toString(userNumber).contains("0") || Integer.toString(userNumber).contains("7") || Integer.toString(userNumber).contains("8") || Integer.toString(userNumber).contains("9")) {
+                if (userNumber > 6666 ||
+                        userNumber < 999 ||
+                        Integer.toString(userNumber).contains("0") ||
+                        Integer.toString(userNumber).contains("7") ||
+                        Integer.toString(userNumber).contains("8") ||
+                        Integer.toString(userNumber).contains("9")) {
+
                     System.out.println("Podaj poprawny kod");
                     continue;
                 }
@@ -104,5 +109,9 @@ public class Mastermind {
             }
 
         }
+    }
+
+    public static void main(String[] args) {
+        masterMind();
     }
 }
